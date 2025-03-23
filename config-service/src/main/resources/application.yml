@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:./config-repo # Папка в корне проекта
+  profiles:
+    active: native # Для использования локальной файловой системы
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: config-instance-${random.uuid}
