@@ -18,3 +18,22 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     instance-id: config-instance-${random.uuid}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: Config Server
+    description: Конфигурационный сервис для микросервис
+    version: 0.0.1
