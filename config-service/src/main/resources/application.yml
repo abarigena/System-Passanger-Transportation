@@ -10,7 +10,7 @@ spring:
     active: native # Для использования локальной файловой системы
 
 server:
-  port: 8888
+  port: 8887
 
 eureka:
   client:
