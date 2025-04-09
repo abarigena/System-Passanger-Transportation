@@ -6,6 +6,11 @@ spring:
   cloud:
     config:
       fail-fast: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_db # Замените на ваши данные
+    username: your_db_user
+    password: your_db_password
+    driver-class-name: org.postgresql.Driver
 
 server:
   port: 8000
