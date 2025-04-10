@@ -6,10 +6,15 @@ import lombok.Setter;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "auth_users", uniqueConstraints = {
@@ -20,7 +25,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthUser {
+public class AuthUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID) // Используем UUID как PK
@@ -34,7 +39,7 @@ public class AuthUser {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private UserStatus status;
+    private UserStatus status = UserStatus.PENDING_EMAIL_VERIFICATION;
 
 
     @ElementCollection(fetch = FetchType.EAGER) // EAGER т.к. роли часто нужны сразу
@@ -56,4 +61,23 @@ public class AuthUser {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role)) // Префикс ROLE_ важен для Spring Security
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public String getPassword() {
+        return this.passwordHash;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email; // Используем email как username
+    }
+
+
 }
