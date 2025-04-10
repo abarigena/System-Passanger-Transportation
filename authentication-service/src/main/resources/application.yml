@@ -7,10 +7,26 @@ spring:
     config:
       fail-fast: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/auth_db # Замените на ваши данные
-    username: your_db_user
-    password: your_db_password
+    url: jdbc:postgresql://localhost:5433/authDB
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  kafka:
+    bootstrap-servers: localhost:9092 # Адрес Kafka брокеров
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+
 
 server:
   port: 8000
