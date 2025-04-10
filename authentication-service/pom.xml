@@ -54,10 +54,9 @@
             <artifactId>spring-boot-starter-validation</artifactId> <!-- Для валидации DTO -->
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId> <!-- Для интеграции с Kafka -->
-        </dependency>
+
+
+
 
         <!-- База данных -->
         <dependency>
@@ -91,6 +90,10 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>

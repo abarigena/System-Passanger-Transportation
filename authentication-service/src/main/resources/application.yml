@@ -26,10 +26,16 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 
+kafka:
+  topic:
+    user-registered=auth-events
+
+
+
 
 server:
   port: 8000
 jwt:
   refresh-token-expiration-ms: 86400000
   secret: ${JWT_ACCESS_KEY}
-  expiration-ms: 3600000
+  expiration-ms: 360000
