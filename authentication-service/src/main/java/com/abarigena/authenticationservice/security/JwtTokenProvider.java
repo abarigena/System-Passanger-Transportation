@@ -3,9 +3,12 @@ package com.abarigena.authenticationservice.security;
 import com.abarigena.authenticationservice.dto.UserInfo;
 import com.abarigena.authenticationservice.entity.AuthUser;
 import io.jsonwebtoken.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -14,13 +17,13 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class JwtTokenProvider {
 
     @Value("${jwt.secret}")
@@ -33,6 +36,7 @@ public class JwtTokenProvider {
     private long refreshTokenExpirationMs;
 
     private SecretKey key;
+    private final ObjectMapper objectMapper;
 
     @PostConstruct
     public void init() {
@@ -47,9 +51,9 @@ public class JwtTokenProvider {
     public String generateAccessToken(AuthUser userPrincipal) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + accessTokenExpirationMs);
-        List<String> roles = userPrincipal.getAuthorities().stream()
+        Set<String> roles = userPrincipal.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
         return Jwts.builder()
                 .setSubject(userPrincipal.getUserId().toString())
@@ -99,8 +103,11 @@ public class JwtTokenProvider {
 
         UUID userId = UUID.fromString(claims.getSubject());
         String email = claims.get("email", String.class);
-        @SuppressWarnings("unchecked") // Безопасно, если мы контролируем создание токена
-        Set<String> roles = claims.get("roles", Set.class);
+
+
+        Object rolesClaim = claims.get("roles");
+        Set<String> roles = objectMapper.convertValue(rolesClaim, new TypeReference<>() {
+        });
 
         return UserInfo.builder()
                 .userId(userId)

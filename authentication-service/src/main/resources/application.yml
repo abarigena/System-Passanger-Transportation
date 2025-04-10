@@ -24,12 +24,10 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-
-kafka:
-  topic:
-    user-registered=auth-events
-
+    topic:
+      user-registered: auth-events
+      user-email-verified: auth-events
+      user-password-changed: auth-events
 
 
 
@@ -39,3 +37,5 @@ jwt:
   refresh-token-expiration-ms: 86400000
   secret: ${JWT_ACCESS_KEY}
   expiration-ms: 360000
+  email-confirm-token-expiration-ms: 86400000
+  password-reset-token-expiration-ms: 3600000

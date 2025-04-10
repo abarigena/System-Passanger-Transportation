@@ -16,13 +16,13 @@ public class KafkaProducerService {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    @Value(value = "auth-events")
+    @Value("${spring.kafka.topic.user-registered}")
     private String userRegisteredTopic;
 
-    @Value(value = "auth-events")
+    @Value("${spring.kafka.topic.user-email-verified}")
     private String userEmailVerifiedTopic;
 
-    @Value(value = "auth-events")
+    @Value("${spring.kafka.topic.user-password-changed}")
     private String userPasswordChangedTopic;
 
     public void sendUserRegisteredEvent(UUID userId, String email, String firstName, String lastName, String phoneNumber) {
