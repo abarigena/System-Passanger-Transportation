@@ -20,7 +20,8 @@ spring:
         format_sql: true
     show-sql: true
   kafka:
-    bootstrap-servers: localhost:9092 # Адрес Kafka брокеров
+
+    bootstrap-servers: localhost:19092 # Адрес Kafka брокеров
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
