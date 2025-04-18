@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class AuthUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID) // Используем UUID как PK
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
 
     @Column(nullable = false, unique = true)

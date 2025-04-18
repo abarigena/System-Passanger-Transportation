@@ -1,5 +1,8 @@
 package com.abarigena.authenticationservice.kafka;
 
+import com.abarigena.authenticationservice.dto.kafka.UserEmailVerifiedEventDto;
+import com.abarigena.authenticationservice.dto.kafka.UserPasswordChangedEventDto;
+import com.abarigena.authenticationservice.dto.kafka.UserRegisteredEventDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

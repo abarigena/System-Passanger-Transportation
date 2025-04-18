@@ -1,4 +1,7 @@
 spring:
+  profiles:
+
+
   application:
     name: authentication-service
   config:

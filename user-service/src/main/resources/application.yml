@@ -6,6 +6,31 @@ spring:
   cloud:
     config:
       fail-fast: true
-
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_db # !!! Имя БД или порт могут отличаться !!!
+    username: your_user # Замените
+    password: your_password
+  jpa:
+    hibernate:
+      ddl-auto: update # или validate/none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  kafka:
+    bootstrap-servers: localhost:19092 # Используем порт для внешнего доступа к Kafka в Docker
+    # --- Consumer ---
+    consumer:
+      group-id: user-service-group # Группа консьюмеров для User Service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.abarigena.user-service.dto.kafka, com.abarigena.authenticationservice.dto.kafka" # Доверяем пакетам DTO
+        spring.json.value.default.type: java.lang.Object # Или настроить маппинги типов
+      auto-offset-reset: earliest # Начинать читать с начала, если нет офсета
+    # --- Producer ---
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 server:
   port: 8001

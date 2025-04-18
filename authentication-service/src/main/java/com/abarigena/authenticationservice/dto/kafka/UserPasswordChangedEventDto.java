@@ -1,4 +1,4 @@
-package com.abarigena.authenticationservice.kafka;
+package com.abarigena.authenticationservice.dto.kafka;
 
 import lombok.Builder;
 import lombok.Data;

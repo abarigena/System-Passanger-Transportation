@@ -1,14 +1,13 @@
-package com.abarigena.authenticationservice.kafka;
+package com.abarigena.authenticationservice.dto.kafka;
 
 import lombok.Builder;
 import lombok.Data;
-
 import java.time.Instant;
 import java.util.UUID;
 
 @Data
 @Builder
-public class UserEmailVerifiedEventDto {
+public class UserRegisteredEventDto {
     private UUID userId;
     private String email;
     private String firstName;
