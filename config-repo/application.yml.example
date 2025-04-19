@@ -1,5 +1,0 @@
-postgres:
-  username: example_username
-  password: example_password
-
-// нужно создать файл application.yml, с такой структурой.

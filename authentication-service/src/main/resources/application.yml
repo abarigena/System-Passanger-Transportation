@@ -1,7 +1,4 @@
 spring:
-  profiles:
-
-
   application:
     name: authentication-service
   config:
@@ -32,7 +29,8 @@ spring:
       user-registered: auth-events
       user-email-verified: auth-events
       user-password-changed: auth-events
-
+    properties:
+      spring.json.add.type.headers: "true"
 
 
 server:
