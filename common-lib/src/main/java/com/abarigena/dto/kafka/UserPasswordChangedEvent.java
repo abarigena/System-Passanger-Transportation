@@ -1,4 +1,4 @@
-package com.abarigena.userservice.dto.kafka;
+package com.abarigena.dto.kafka;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,10 +10,13 @@ import java.util.UUID;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserContactVerifiedEvent {
+@NoArgsConstructor
+public class UserPasswordChangedEvent {
     private UUID userId;
-    private String contactType; // "phone"
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
     private Instant timestamp;
 }

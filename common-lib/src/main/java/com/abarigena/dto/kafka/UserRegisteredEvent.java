@@ -1,14 +1,18 @@
-package com.abarigena.authenticationservice.dto.kafka;
+package com.abarigena.dto.kafka;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @Data
 @Builder
-public class UserPasswordChangedEventDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserRegisteredEvent {
     private UUID userId;
     private String email;
     private String firstName;

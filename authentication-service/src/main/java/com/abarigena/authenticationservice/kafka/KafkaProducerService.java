@@ -1,8 +1,9 @@
 package com.abarigena.authenticationservice.kafka;
 
-import com.abarigena.authenticationservice.dto.kafka.UserEmailVerifiedEventDto;
-import com.abarigena.authenticationservice.dto.kafka.UserPasswordChangedEventDto;
-import com.abarigena.authenticationservice.dto.kafka.UserRegisteredEventDto;
+
+import com.abarigena.dto.kafka.UserEmailVerifiedEvent;
+import com.abarigena.dto.kafka.UserPasswordChangedEvent;
+import com.abarigena.dto.kafka.UserRegisteredEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +30,7 @@ public class KafkaProducerService {
     private String userPasswordChangedTopic;
 
     public void sendUserRegisteredEvent(UUID userId, String email, String firstName, String lastName, String phoneNumber) {
-        UserRegisteredEventDto event = UserRegisteredEventDto.builder()
+        UserRegisteredEvent event = UserRegisteredEvent.builder()
                 .userId(userId)
                 .email(email)
                 .firstName(firstName)
@@ -47,7 +48,7 @@ public class KafkaProducerService {
     }
 
     public void sendUserEmailVerifiedEvent(UUID userId) {
-        UserEmailVerifiedEventDto event = UserEmailVerifiedEventDto.builder()
+        UserEmailVerifiedEvent event = UserEmailVerifiedEvent.builder()
                 .userId(userId)
                 .timestamp(Instant.now())
                 .build();
@@ -60,7 +61,7 @@ public class KafkaProducerService {
     }
 
     public void sendUserPasswordChangedEvent(UUID userId) {
-        UserPasswordChangedEventDto event = UserPasswordChangedEventDto.builder()
+        UserPasswordChangedEvent event = UserPasswordChangedEvent.builder()
                 .userId(userId)
                 .timestamp(Instant.now())
                 .build();

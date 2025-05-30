@@ -24,7 +24,7 @@ public class UserProfile {
     private UUID userId;
 
     // Email можно хранить для информации, получен из события регистрации
-    @Column(unique = true) // Возможно, email тоже должен быть уникальным? Зависит от логики.
+    @Column(unique = true)
     private String email;
 
     @Column(length = 50)
@@ -33,13 +33,13 @@ public class UserProfile {
     @Column(length = 50)
     private String lastName;
 
-    @Column(length = 20, unique = true) // Сделать уникальным?
+    @Column(length = 20, unique = true)
     private String phoneNumber;
 
     @Column(nullable = false)
     private Boolean phoneVerified = false; // По умолчанию false
 
-    @Column(length = 255) // Или TEXT
+    @Column(length = 255)
     private String photoUrl;
 
     @Column(columnDefinition = "TEXT")

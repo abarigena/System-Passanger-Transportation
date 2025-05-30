@@ -1,9 +1,10 @@
-package com.abarigena.userservice.dto.kafka;
+package com.abarigena.dto.kafka;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.Instant;
 import java.util.UUID;
 
@@ -11,11 +12,8 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegisteredEvent {
+public class UserContactVerifiedEvent {
     private UUID userId;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
+    private String contactType; // "phone"
     private Instant timestamp;
 }

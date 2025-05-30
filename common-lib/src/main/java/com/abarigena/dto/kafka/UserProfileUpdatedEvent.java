@@ -1,19 +1,20 @@
-package com.abarigena.userservice.dto.kafka;
+package com.abarigena.dto.kafka;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.math.BigDecimal;
+
 import java.time.Instant;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRatingUpdatedEvent {
+public class UserProfileUpdatedEvent {
     private UUID userId;
-    private BigDecimal newAverageRating;
+    private Map<String, Object> updatedFields; // Поля, которые изменились { "firstName": "NewName", "photoUrl": "new.jpg" }
     private Instant timestamp;
 }

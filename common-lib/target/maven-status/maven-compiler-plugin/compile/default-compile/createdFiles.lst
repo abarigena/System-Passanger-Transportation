@@ -1,0 +1,12 @@
+com\abarigena\dto\kafka\UserContactVerifiedEvent$UserContactVerifiedEventBuilder.class
+com\abarigena\dto\kafka\UserProfileUpdatedEvent.class
+com\abarigena\dto\kafka\UserRatingUpdatedEvent.class
+com\abarigena\dto\kafka\UserEmailVerifiedEvent$UserEmailVerifiedEventBuilder.class
+com\abarigena\dto\kafka\UserEmailVerifiedEvent.class
+com\abarigena\dto\kafka\UserRatingUpdatedEvent$UserRatingUpdatedEventBuilder.class
+com\abarigena\dto\kafka\UserPasswordChangedEvent$UserPasswordChangedEventBuilder.class
+com\abarigena\dto\kafka\UserProfileUpdatedEvent$UserProfileUpdatedEventBuilder.class
+com\abarigena\dto\kafka\UserRegisteredEvent$UserRegisteredEventBuilder.class
+com\abarigena\dto\kafka\UserRegisteredEvent.class
+com\abarigena\dto\kafka\UserContactVerifiedEvent.class
+com\abarigena\dto\kafka\UserPasswordChangedEvent.class
